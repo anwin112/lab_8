@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 
 const Card = ({ title, features, image }) => {
-  const [size, setSize] = useState(3); // Initial size
+  // Manage the like state (toggled between normal and larger size)
+  const [isLiked, setIsLiked] = useState(false);
 
-  const increaseSize = () => {
-    setSize(size + 1); // Increase the size on each click
+  // Function to toggle the heart size
+  const toggleSize = () => {
+    setIsLiked(!isLiked);
   };
 
   return (
@@ -19,9 +21,9 @@ const Card = ({ title, features, image }) => {
         </ul>
         <div className="pt-4">
           <button
-            onClick={increaseSize}
+            onClick={toggleSize}
             className={`transition-transform duration-300 text-red-500`}
-            style={{ fontSize: `${size}rem` }} // Dynamically set the size
+            style={{ fontSize: isLiked ? '5rem' : '3rem' }} // Only change the heart's font size
           >
             ♥
           </button>
